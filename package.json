@@ -4,9 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "budo index.js --port 4000 --live",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserify": {
+    "transform": [
+      "es2040"
+    ]
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "budo": "^9.2.1",
+    "es2040": "^1.2.4",
+    "hyperscript": "^2.0.2",
+    "morphdom": "^2.2.0"
+  }
 }
