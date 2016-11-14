@@ -1,7 +1,25 @@
-console.log('budo is logging')
+const morph = require('morphdom')
 
-const message = document.createElement('div')
-message.innerText = 'Budo is live'
+const Todos = require('./todos')
 
-document.body.appendChild(message)
+let state = { 
+  todos: [{
+    description: 'buy eggs',
+    done: false
+  }, {
+    description: 'invoice traject',
+    done: false
+  }]
+}
+
+const todos = Todos(state.todos, toggleDone)
+document.body.appendChild(todos)
+
+function toggleDone (index) {
+  console.log(index, 'toggling DONE')
+  state.todos[index].done = !state.todos[index].done
+
+  const newTodos = Todos(state.todos)
+  morph(todos, newTodos)
+}
 
