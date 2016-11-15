@@ -1,6 +1,7 @@
 const morph = require('morphdom')
 
 const Todos = require('./todos')
+const reducer = require('./reducer')
 
 let state = { 
   todos: [{
@@ -12,13 +13,12 @@ let state = {
   }]
 }
 
-const todos = Todos(state.todos, toggleDone)
+const todos = Todos(state.todos, dispatch)
 document.body.appendChild(todos)
 
-function toggleDone (index) {
-  console.log(index, 'toggling DONE')
-  state.todos[index].done = !state.todos[index].done
-
+function dispatch(action) {
+  console.log('in dispatch with action:' ,action)
+  state = reducer(state, action) 
   const newTodos = Todos(state.todos)
   morph(todos, newTodos)
 }
