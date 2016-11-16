@@ -11,8 +11,9 @@ var reducer = (state, action) => {
     case 'TOGGLE_DONE':
       newState.todos[action.payload].done = !newState.todos[action.payload].done  
       return newState
+    default: 
+      return newState
   }
-
 }
 
 module.exports = reducer
